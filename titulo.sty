@@ -1,0 +1,54 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  CONFIGURAÇÃO  DE  FONTES  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{titulo}
+
+
+% pacote para opções do tipo "key=value"
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+    family = titl,
+    prefix = titl@
+}
+% opção de cor das caixas
+\DeclareStringOption{logo}
+\ProcessKeyvalOptions*
+
+% configuração do título
+\RequirePackage{titling}
+% pacote para incluir imagens
+\RequirePackage{graphicx}
+
+
+
+%%%%%%%%%%%%%%%%
+%% DEFINIÇÕES %%
+
+% desenho do logo
+\newcommand{\@logo}{}
+
+% comando que desenha o logo
+\newcommand{\softwarelogo}{
+    \renewcommand{\@logo}{
+        \if \titl@logo\empty
+        % se tiver um logo para desenhar
+        \else
+            % coloca ele
+            \includegraphics[width=0.3\textwidth]{\titl@logo}\\[\bigskipamount]
+        \fi
+    }
+}
+
+% configurações do título
+\pretitle{
+	\begin{center}
+        \normalfont\LARGE\sffamily
+}
+\posttitle{
+        \@logo
+    \end{center}
+}
+
+
+\endinput

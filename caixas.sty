@@ -1,0 +1,91 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  CAIXAS  DE  TEXTO  COLORIDAS  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{caixas}
+
+
+% pacote para opções do tipo "key=value"
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+    family = caixas,
+    prefix = caixas@
+}
+% opção de cor das caixas
+\DeclareStringOption[white]{cor}[white]
+\ProcessKeyvalOptions*
+
+% pacote para montar as caixas como ambientes
+\RequirePackage[framemethod=default]{mdframed}
+
+
+
+%%%%%%%%%%%%%%%%
+%% DEFINIÇÕES %%
+
+% caixa com barra lateral colorida
+\newmdenv[
+    skipabove         = 7pt,
+    skipbelow         = 7pt,
+%
+    innerleftmargin   = 5pt,
+    innerrightmargin  = 5pt,
+    innertopmargin    = 5pt,
+    innerbottommargin = 5pt,
+    leftmargin        = 0cm,
+    rightmargin       = 0cm,
+%
+    rightline         = false,
+    leftline          = true,
+    topline           = false,
+    bottomline        = false,
+%
+    backgroundcolor   = \caixas@cor!10,
+    linecolor         = \caixas@cor,
+%
+    linewidth         = 4pt
+]{caixaColorida}
+
+
+% caixa com barra lateral em preto
+\newmdenv[
+    skipabove         = 7pt,
+    skipbelow         = 7pt,
+%
+    innerleftmargin   = 5pt,
+    innerrightmargin  = 5pt,
+    innertopmargin    = 5pt,
+    innerbottommargin = 5pt,
+    leftmargin        = 0cm,
+    rightmargin       = 0cm,
+%
+    rightline         = false,
+    leftline          = true,
+    topline           = false,
+    bottomline        = false,
+%
+    backgroundcolor   = black!10,
+    linecolor         = gray,
+%
+    linewidth         = 4pt
+]{caixaEscura}
+
+
+% caixa fechada com barras em todos os lados
+\newmdenv[
+    skipabove         = 7pt,
+    skipbelow         = 7pt,
+%
+    innerleftmargin   = 5pt,
+    innerrightmargin  = 5pt,
+    innertopmargin    = 5pt,
+    innerbottommargin = 5pt,
+    leftmargin        = 0cm,
+    rightmargin       = 0cm,
+%
+    backgroundcolor   = \caixas@cor!15,
+    linecolor         = \caixas@cor!70
+]{caixaFechada}
+
+
+\endinput

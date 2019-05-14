@@ -1,0 +1,108 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  CONFIGURAÇÃO  DAS  SEÇÕES  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{secoes}
+
+
+% pacote para opções do tipo "key=value"
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+    family = secoes,
+    prefix = secoes@
+}
+% opção de cor do número da secção
+\DeclareStringOption[black]{cor}[black]
+\ProcessKeyvalOptions*
+
+% pacote para limites a posição de floats
+\RequirePackage{placeins}
+% ajuda na redefinição de macros
+\RequirePackage{letltxmacro}
+
+
+
+%%%%%%%%%%%%%%%%
+%% FORMATAÇÃO %%
+
+% para colocar o número fora da margem
+\newcommand{\foradamargem}[1]{%
+    \llap{%
+        \textcolor{\secoes@cor}{#1}%
+        \hspace{1em}%
+    }%
+}
+
+% formatação do texto da seção, com o número na margem
+\renewcommand{\@seccntformat}[1]{%
+    \foradamargem{\csname the#1\endcsname}%
+}
+
+% formatação de seção, subseção e afins
+\renewcommand{\section}{
+    \@startsection{section}
+        {1}{\z@}
+        {-4ex \@plus -1ex \@minus -.4ex}
+        {1ex \@plus.2ex }
+        {\normalfont\LARGE\sffamily\bfseries}
+}
+\renewcommand{\subsection}{
+    \@startsection{subsection}
+        {2}{\z@}
+        {-3ex \@plus -0.1ex \@minus -.4ex}
+        {0.5ex \@plus.2ex }
+        {\normalfont\sffamily\bfseries}
+}
+\renewcommand{\subsubsection}{
+    \@startsection{subsubsection}
+        {3}{\z@}
+        {-2ex \@plus -0.1ex \@minus -.2ex}
+        {.2ex \@plus.2ex }
+        {\normalfont\small\sffamily\bfseries}
+}
+\renewcommand{\paragraph}{
+    \@startsection{paragraph}
+        {4}{\z@}
+        {-2ex \@plus-.2ex \@minus .2ex}
+        {.1ex}
+        {\normalfont\small\sffamily\bfseries}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% LIMITE DE FLOATS %%
+
+% limite por seção
+\let\@Oldsection\section
+\renewcommand{\section}{
+    \FloatBarrier\@Oldsection
+}
+
+% limite por subseção
+\let\@Oldsubsection\subsection
+\renewcommand{\subsection}{
+    \FloatBarrier\@Oldsubsection
+}
+
+% limite por subsubseção
+\let\@Oldsubsubsection\subsubsection
+\renewcommand{\subsubsection}{
+    \FloatBarrier\@Oldsubsubsection
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% REFERÊNCIA POR NOME %%
+
+\AtBeginDocument{
+    \@ifdefinable{\myorg@nameref}{
+        \LetLtxMacro\myorg@nameref\nameref
+        % comando que referencia pelo nome da seção
+        \DeclareRobustCommand*{\nameref}[1]{
+            \emph{\myorg@nameref{#1}}
+        }
+    }
+}
+
+
+\endinput

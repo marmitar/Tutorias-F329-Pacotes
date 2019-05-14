@@ -1,0 +1,49 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  CONFIGURAÇÃO  DE  FONTES  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fontes}
+
+
+% pacote para opções do tipo "key=value"
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+    family = fontes,
+    prefix = fontes@
+}
+% opção de cor do número da secção
+\DeclareStringOption[black]{corlink}[black]
+\ProcessKeyvalOptions*
+
+% para reconhecer símbolos do português
+\RequirePackage[portuguese]{babel}
+% codificação da fonte
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+% pacote com fontes matemáticas
+\RequirePackage{amsmath, amsfonts, amssymb, amsthm}
+% melhores estéticas de fontes
+\RequirePackage{microtype}
+% links e referências hipertextual
+\RequirePackage{hyperref}
+
+
+
+%%%%%%%%%%%%%%%%
+%% DEFINIÇÕES %%
+
+% configurações de links
+\hypersetup{
+    backref,
+    pagebackref,
+    hyperindex,
+    colorlinks = \fontes@corlink,
+    urlcolor   = \fontes@corlink,
+    bookmarks,
+    bookmarksopen = false,
+    breaklinks,
+    hidelinks,
+}
+
+
+\endinput

@@ -1,0 +1,96 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  CAIXAS  DE  TEXTO  COLORIDAS  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ambientes}
+
+
+% pacote para opções do tipo "key=value"
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+    family = ambs,
+    prefix = ambs@
+}
+% opção de cor das caixas
+\DeclareStringOption[white]{cor}[white]
+\ProcessKeyvalOptions*
+
+% pacote com as caixas
+\RequirePackage[cor=\ambs@cor]{config/estrutura/caixas}
+
+% pacote para incluir imagens
+\RequirePackage{graphicx}
+% pacote para criar desenhos
+\RequirePackage{tikz}
+
+% pacote para customizar listas
+\RequirePackage{enumitem}
+% reduz o espeço entre os items
+\setlist{nolistsep}
+
+
+
+%%%%%%%%%%%%%%%%
+%% DEFINIÇÕES %%
+
+% ambiente de notas sobre o texto
+\newenvironment{nota}{
+    \begin{caixaColorida}
+}{
+        \hfill%
+        \color{\caixas@cor}\tiny\ensuremath{\blacksquare}
+    \end{caixaColorida}
+}
+
+
+% ambiente para equações de uma linha
+\newenvironment{equacao}{
+    \begin{caixaEscura}
+        \begin{equation}
+}{
+        \end{equation}
+    \end{caixaEscura}
+}
+
+
+% cria um desenho de um círculo com o argumento dentro
+\newcommand{\circulado}[1]{
+    \begin{tikzpicture}[overlay]
+        \node[
+            draw       = \caixas@cor!80,
+            fill       = \caixas@cor!35,
+            circle,
+            line width = 1pt,
+        %
+            font       = \sffamily\bfseries,
+            inner sep  = 2pt,
+            outer sep  = 0pt
+        %
+        ] at (-15pt,0pt) {\textcolor{\caixas@cor}{#1}};
+    \end{tikzpicture}
+}
+
+% ambiente de lembrete
+\newenvironment{lembrete}{
+    % espaço acima e letra menor
+    \par\vspace{10pt}\small
+
+    % o ambiente foi feito como uma lista de um item
+    \begin{list}{}{
+        \leftmargin  = 35pt
+        \rightmargin = 25pt
+    }
+        \item\ignorespaces\begin{caixaFechada}
+            % círculo com a exclamação (fora da caixa)
+            \makebox[-2.5pt]{\circulado{!}}
+            % e pula um espaço
+            \advance\baselineskip -1pt
+}{
+        \end{caixaFechada}
+    \end{list}
+    % mais espaço
+    \vskip5pt
+}
+
+
+\endinput

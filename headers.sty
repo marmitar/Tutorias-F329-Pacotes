@@ -1,0 +1,40 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  ESTILO  DO  HEADER  DA PÁGINA  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{headers}
+
+
+% pacote para alterar os headers
+\RequirePackage{fancyhdr}
+
+
+%%%%%%%%%%%%%%%%%%%
+%% ESTILO PADRÃO %%
+\pagestyle{fancy}
+
+% cria marcador de seção na direita
+\renewcommand{\sectionmark}[1]{
+    \markright{\sffamily\normalsize\thesection\hspace{5pt}#1}{}
+}
+
+% reseta a configuração do header
+\fancyhf{}
+% e colocar a marca na esquerda
+\fancyhead[L]{\rightmark}
+
+% divisor do header
+\renewcommand{\headrulewidth}{0.5pt}
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% ESTILO SIMPLES %%
+\fancypagestyle{plain}{
+    % sem texto
+    \fancyhead{}
+    % e sem divisor
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+
+\endinput
