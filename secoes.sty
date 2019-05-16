@@ -98,8 +98,8 @@
     \@ifdefinable{\myorg@nameref}{
         \LetLtxMacro\myorg@nameref\nameref
         % comando que referencia pelo nome da seção
-        \DeclareRobustCommand*{\nameref}[1]{
-            \emph{\myorg@nameref{#1}}
+        \DeclareRobustCommand*{\nameref}[1]{%
+            \emph{\myorg@nameref{#1}}%
         }
     }
 }
