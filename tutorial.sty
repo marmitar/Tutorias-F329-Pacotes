@@ -1,0 +1,43 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  CAIXAS  DE  TEXTO  COLORIDAS  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tutorial}
+
+
+% pacote para opções do tipo "key=value"
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+    family = tut,
+    prefix = tut@
+}
+% opção de nome do software
+\DeclareStringOption{nome}
+% cor do tutorial
+\DeclareStringOption{cor}
+% logo do software
+\DeclareStringOption{logo}
+\ProcessKeyvalOptions*
+
+% pacotes de configuração
+\RequirePackage{pacotes/headers}
+\RequirePackage[corlink=\tut@cor]{pacotes/fontes}
+\RequirePackage[cor=\tut@cor]{pacotes/ambientes}
+\RequirePackage{pacotes/margens}
+\RequirePackage[cor=\tut@cor]{pacotes/secoes}
+\RequirePackage[logo=\tut@logo]{pacotes/titulo}
+
+
+% padrão com o nome do software
+\newcommand{\software}{%
+    \texttt{\tut@nome}
+}
+
+% começa a seção no `0`
+\setcounter{section}{-1}
+
+% fontes de texto e ambiente matemático
+\RequirePackage{avant}
+\RequirePackage{mathptmx}
+
+\endinput
