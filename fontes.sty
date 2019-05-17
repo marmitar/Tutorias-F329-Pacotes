@@ -25,25 +25,17 @@
 % melhores estéticas de fontes
 \RequirePackage{microtype}
 % links e referências hipertextual
-\RequirePackage{hyperref}
-
-
-
-%%%%%%%%%%%%%%%%
-%% DEFINIÇÕES %%
-
-% configurações de links
-\hypersetup{
+\RequirePackage[
     backref,
     pagebackref,
     hyperindex,
     colorlinks,
-    urlcolor   = \fontes@corlink,
+    urlcolor = \fontes@corlink,
     bookmarks,
     bookmarksopen = false,
     breaklinks,
     hidelinks,
-}
+]{hyperref}
 
 
 \endinput
