@@ -2,7 +2,7 @@
 %%  CONFIGURAÇÃO  DE  TÍTULOS  %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{titulo}
+\ProvidesPackage{pacotes/titulo}
 
 
 % pacote para opções do tipo "key=value"
@@ -32,10 +32,10 @@
 
 % comando que desenha o logo
 \newcommand{\softwarelogo}{
-    \renewcommand{\@logo}{%
+    \renewcommand{\@logo}{
         \href{\titl@link}{%
-            \includegraphics[width=0.3\textwidth]{\titl@logo}\\[\bigskipamount]%
-        }%
+            \includegraphics[width=0.3\textwidth]{\titl@logo}%
+        }\\[\bigskipamount]
     }
 }
 
