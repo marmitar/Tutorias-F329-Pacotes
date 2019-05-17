@@ -13,6 +13,8 @@
 }
 % opção de nome do software
 \DeclareStringOption{nome}
+% link do software
+\DeclareStringOption{link}
 % cor do tutorial
 \DeclareStringOption{cor}
 % logo do software
@@ -25,7 +27,7 @@
 \RequirePackage[cor=\tut@cor]{pacotes/ambientes}
 \RequirePackage{pacotes/margens}
 \RequirePackage[cor=\tut@cor]{pacotes/secoes}
-\RequirePackage[logo=\tut@logo]{pacotes/titulo}
+\RequirePackage[logo=\tut@logo, link=\tut@link]{pacotes/titulo}
 
 
 % padrão com o nome do software

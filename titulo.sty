@@ -11,8 +11,10 @@
     family = titl,
     prefix = titl@
 }
-% opção de cor das caixas
+% opção de imagem do software
 \DeclareStringOption{logo}
+% link do software
+\DeclareStringOption{link}
 \ProcessKeyvalOptions*
 
 % configuração do título
@@ -30,13 +32,10 @@
 
 % comando que desenha o logo
 \newcommand{\softwarelogo}{
-    \renewcommand{\@logo}{
-        \if \titl@logo\empty
-        % se tiver um logo para desenhar
-        \else
-            % coloca ele
-            \includegraphics[width=0.3\textwidth]{\titl@logo}\\[\bigskipamount]
-        \fi
+    \renewcommand{\@logo}{%
+        \href{\titl@link}{%
+            \includegraphics[width=0.3\textwidth]{\titl@logo}\\[\bigskipamount]%
+        }%
     }
 }
 
