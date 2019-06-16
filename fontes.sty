@@ -24,6 +24,8 @@
 \RequirePackage{amsmath, amsfonts, amssymb, amsthm}
 % melhores estéticas de fontes
 \RequirePackage{microtype}
+% controles de sublinhado
+\RequirePackage{soulutf8}
 % links e referências hipertextual
 \RequirePackage[
     backref,
@@ -37,5 +39,11 @@
     hidelinks,
 ]{hyperref}
 
+\setulcolor{\fontes@corlink}
+% altera os links para sublinhado
+\let\OldHref\href
+\renewcommand{\href}[2]{%
+    \OldHref{#1}{\ul{#2}}%
+}
 
 \endinput
